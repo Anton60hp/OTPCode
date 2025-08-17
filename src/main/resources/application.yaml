@@ -1,0 +1,40 @@
+spring:
+  application.name: OTPCode
+  datasource:
+    url: jdbc:postgresql://localhost:5432/OTPCode
+    username: postgres
+    password: 1313
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    defer-datasource-initialization: true
+    show-sql: true
+    hibernate.ddl-auto: update
+    properties.hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
+  sql.init.mode: always
+
+#sms notification
+smpp:
+  host: localhost
+  port: 2775
+  system_id: smppclient1
+  password: password
+  system_type: OTP
+  source_addr: OTPService
+
+#email notification
+email:
+  username: your_email@example.com
+  password: your_email_password
+  from: your_email@example.com
+mail:
+  smtp:
+    host: smtp.example.com
+    port: 587
+    auth: true
+    starttls:
+      enable: true
+
+#telegram notification
+telegram.bot_token: 8280528772:AAE0j7QKGS7Zrcc4pf69dih6ngiRRAyNPR8
+
+logging.level.ru.vgerasimov: DEBUG

@@ -1,0 +1,1 @@
+insert into code_config (id,code_lenght,expiration_time) values (1,4,60) on conflict (id) do nothing;
