@@ -1,7 +1,7 @@
 package ru.vgerasimov.OTPCode.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Data;
 
 import java.time.LocalDateTime;
 
@@ -20,7 +20,7 @@ public class OTPCode {
     @Enumerated(EnumType.STRING)
     private CodeStatus status;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private User user;
 

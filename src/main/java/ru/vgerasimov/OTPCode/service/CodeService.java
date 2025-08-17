@@ -1,6 +1,6 @@
 package ru.vgerasimov.OTPCode.service;
 
-import  lombok.RequiredArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -9,7 +9,6 @@ import ru.vgerasimov.OTPCode.entity.CodeStatus;
 import ru.vgerasimov.OTPCode.entity.NotificationType;
 import ru.vgerasimov.OTPCode.entity.OTPCode;
 import ru.vgerasimov.OTPCode.entity.User;
-import ru.vgerasimov.OTPCode.notification.NotificationFacade;
 import ru.vgerasimov.OTPCode.repository.CodeRepository;
 import ru.vgerasimov.OTPCode.repository.ConfigRepository;
 import ru.vgerasimov.OTPCode.repository.UserRepository;
@@ -30,7 +29,7 @@ public class CodeService {
 
     public OTPCode getCode(String userId, Long operationId, NotificationType notificationType) {
         String code = "";
-        User user = userRepository.findById(Integer.valueOf(userId)).orElseThrow(() -> new UsernameNotFoundException("Пользователь не найден"));
+        User user = userRepository.findByUsername(userId).orElseThrow(() -> new UsernameNotFoundException("Пользователь не найден"));
         int length = configRepository.findById(1).getCodeLength();
         int TTLSec = configRepository.findById(1).getExpirationTime();
         for (int i = 1; i <= length; i++) {
